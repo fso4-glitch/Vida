@@ -81,12 +81,12 @@ footer{background:#f7bfd4;color:#7a4257}
 @keyframes hintFade{0%,70%{opacity:1;translate:0 0}100%{opacity:0;translate:0 8px;visibility:hidden}}
 @media(max-width:760px){
  .hero{padding:150px 18px 150px!important}
- .bear-one,.bear-two,.bear-three,.bear-four{width:82px}
+ .bear-one,.bear-two,.bear-three,.bear-four{width:106px}
  .bear-one,.bear-two{top:4px}.bear-three,.bear-four{bottom:4px}
  .bear-one,.bear-three{left:3px}.bear-two,.bear-four{right:3px}
  .bear-hint{right:4px;bottom:91px;font-size:.65rem}
 }
-@media(max-width:390px){.bear-one,.bear-two,.bear-three,.bear-four{width:72px}}
+@media(max-width:390px){.bear-one,.bear-two,.bear-three,.bear-four{width:96px}}
 @media(prefers-reduced-motion:reduce){.user-bear{animation:none}}
 </style>
 </head>
@@ -168,6 +168,7 @@ const questions=[...document.querySelectorAll('.question')];document.querySelect
 const selected=new Set();document.querySelectorAll('.dream').forEach(btn=>btn.onclick=()=>{btn.classList.toggle('selected');btn.classList.contains('selected')?selected.add(btn.textContent):selected.delete(btn.textContent);dreamDone=selected.size>0;document.getElementById('dreamContinue').disabled=!dreamDone;document.getElementById('dreamOutput').textContent=selected.size?'Nossa cápsula: '+[...selected].join(' · '):'O futuro começa com uma escolha ✦';update()});
 unlock.onclick=()=>{document.getElementById('letter').classList.add('show');unlock.style.display='none';burst(unlock,40);setTimeout(()=>document.getElementById('letter').scrollIntoView({behavior:'smooth',block:'center'}),250)};
 function burst(el,total=18){const r=el.getBoundingClientRect();for(let i=0;i<total;i++){const p=document.createElement('span');p.className='particle';p.textContent=i%3?'✦':'●';p.style.left=(r.left+r.width/2)+'px';p.style.top=(r.top+r.height/2)+'px';p.style.color=i%2?'#ffd890':'#ff74a8';p.style.setProperty('--x',(Math.random()*260-130)+'px');p.style.setProperty('--y',(Math.random()*220-140)+'px');document.body.appendChild(p);setTimeout(()=>p.remove(),1250)}}
+function bearBurst(el,total=22){const r=el.getBoundingClientRect();for(let i=0;i<total;i++){const p=document.createElement('span');p.className='particle';p.textContent='❤';p.style.left=(r.left+r.width/2)+'px';p.style.top=(r.top+r.height/2)+'px';p.style.color=i%2?'#e60023':'#ff1744';p.style.fontSize=(14+Math.random()*14)+'px';p.style.textShadow='0 2px 5px #8b001c55';p.style.setProperty('--x',(Math.random()*220-110)+'px');p.style.setProperty('--y',(Math.random()*210-145)+'px');document.body.appendChild(p);setTimeout(()=>p.remove(),1250)}}
 document.getElementById('dreamContinue').onclick=()=>{if(dreamDone)activateStage(4)};
 const puzzle=document.getElementById('puzzle'),puzzleStatus=document.getElementById('puzzleStatus'),movesEl=document.getElementById('moves');let order=[],picked=null,moves=0;
 function shufflePuzzle(){order=[1,2,3,4,5,6,7,8,9];do{for(let i=order.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[order[i],order[j]]=[order[j],order[i]]}}while(order.every((n,i)=>n===i+1));picked=null;moves=0;puzzleDone=false;renderPuzzle();update()}
@@ -178,7 +179,7 @@ const memoryButtons=[...document.querySelectorAll('.memory-btn')],memoryStatus=d
 function makeSequence(){memorySequence=Array.from({length:3},()=>Math.floor(Math.random()*4));memoryInput=[];memoryPlaying=true;memoryStart.disabled=true;memoryButtons.forEach(b=>b.disabled=true);memoryStatus.textContent='Observe a sequência...';memorySequence.forEach((value,i)=>setTimeout(()=>{const b=memoryButtons[value];b.classList.add('flash');setTimeout(()=>b.classList.remove('flash'),420)},850+i*850));setTimeout(()=>{memoryPlaying=false;memoryButtons.forEach(b=>b.disabled=false);memoryStatus.textContent='Agr repita a ordem!'},700+memorySequence.length*850)}
 memoryStart.onclick=()=>{if(puzzleDone&&!memoryDone)makeSequence()};
 memoryButtons.forEach((b,i)=>b.onclick=()=>{if(memoryPlaying||!puzzleDone||memoryDone)return;b.classList.add('flash');setTimeout(()=>b.classList.remove('flash'),180);memoryInput.push(i);const pos=memoryInput.length-1;if(memoryInput[pos]!==memorySequence[pos]){memoryInput=[];memoryStatus.textContent='Quase! Toque em “Mostrar sequência” e tente dnv.';memoryStart.disabled=false;memoryButtons.forEach(x=>x.disabled=true);return}if(memoryInput.length===memorySequence.length){memoryDone=true;memoryStatus.textContent='Sequência perfeita! A mensagem final foi liberada ✦';memoryButtons.forEach(x=>x.disabled=true);memoryStart.style.display='none';burst(document.getElementById('memoryBoard'),40);update();setTimeout(()=>activateStage(6),1000)}});
-document.querySelectorAll('.user-bear').forEach(b=>b.onclick=e=>burst(e.currentTarget,24));
+document.querySelectorAll('.user-bear').forEach(b=>b.onclick=e=>bearBurst(e.currentTarget,24));
 update();
 </script>
 </body></html>
