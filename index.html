@@ -85,17 +85,17 @@ footer{background:#f7bfd4;color:#7a4257}
 .bear-two{right:8px;top:8px;animation:cornerSway 4.1s ease-in-out infinite}
 .bear-three{left:8px;bottom:8px;animation:cornerBounce 3.2s ease-in-out infinite}
 .bear-four{right:8px;bottom:8px;animation:cornerFloat 3.8s ease-in-out infinite reverse}
-.bear-hint{position:fixed;right:18px;bottom:156px;z-index:24;padding:8px 12px;border-radius:999px;background:#fff7fb;color:#b94373;border:2px dotted #dd5b89;font-size:.75rem;font-weight:700;box-shadow:0 7px 18px #a9487126;animation:hintFade 7s ease forwards}
+.bear-hint{position:fixed;right:18px;bottom:156px;z-index:24;padding:8px 12px;border-radius:999px;background:#fff7fb;color:#b94373;border:2px dotted #dd5b89;font-size:.75rem;font-weight:700;box-shadow:0 7px 18px #a9487126;animation:hintFade 11s linear forwards}
 @keyframes cornerFloat{0%,100%{translate:0 0;rotate:-2deg}50%{translate:0 -9px;rotate:2deg}}
 @keyframes cornerSway{0%,100%{translate:0 0;rotate:2deg}50%{translate:-6px 4px;rotate:-3deg}}
 @keyframes cornerBounce{0%,100%{translate:0 0}45%,58%{translate:0 -9px}70%{translate:0 0}}
-@keyframes hintFade{0%,70%{opacity:1;translate:0 0}100%{opacity:0;translate:0 8px;visibility:hidden}}
+@keyframes hintFade{0%,90%{opacity:1;translate:0 0}100%{opacity:0;translate:0 8px;visibility:hidden}}
 @media(max-width:760px){
  .hero{padding:150px 18px 150px!important}
  .bear-one,.bear-two,.bear-three,.bear-four{width:clamp(140px,38vw,160px)}
  .bear-one,.bear-two{top:4px}.bear-three,.bear-four{bottom:4px}
  .bear-one,.bear-three{left:3px}.bear-two,.bear-four{right:3px}
- .bear-hint{right:4px;bottom:91px;font-size:.65rem}
+ .bear-hint{right:8px;bottom:calc(clamp(140px,38vw,160px) + 18px);font-size:.65rem}
 }
 @media(max-width:390px){.bear-one,.bear-two,.bear-three,.bear-four{width:140px}}
 @media(prefers-reduced-motion:reduce){.user-bear{animation:none}}
