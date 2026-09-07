@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#100b2d"><title>Uma surpresa pra vc ✨</title>
+<meta name="theme-color" content="#fff5fb"><title>Uma surpresa pra vc ✨</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;1,600&display=swap');
 :root{--bg:#09071c;--panel:#ffffff10;--line:#ffffff22;--purple:#7849f5;--pink:#ff74a8;--gold:#ffd890;--text:#fff;--muted:#cbc3dd}
@@ -26,6 +26,27 @@ footer{text-align:center;padding:25px;color:#9287a6;font-size:.78rem}
 @keyframes fade{from{opacity:0}}@keyframes slide{from{opacity:0;transform:translateY(15px)}}@keyframes pop{to{translate:var(--x) var(--y);rotate:220deg;opacity:0}}
 @media(max-width:760px){.section{padding-block:78px}.stars{grid-template-columns:1fr}.star-card{min-height:190px}.progress-wrap{top:8px}.option:hover{translate:0}}
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
+/* Tema fofo em tons pastel */
+:root{--bg:#fff5fb;--panel:#ffffffd9;--line:#e8b7d3;--purple:#9b73e8;--pink:#ef72aa;--gold:#e7a74f;--text:#563653;--muted:#795f77}
+body{background:#fff5fb;color:var(--text)}
+.sky{background:radial-gradient(circle at 12% 12%,#ffd7e9 0,transparent 25rem),radial-gradient(circle at 88% 20%,#e7dcff 0,transparent 27rem),radial-gradient(circle at 50% 92%,#ffe9bd 0,transparent 28rem),linear-gradient(145deg,#fff9fc,#f9efff 52%,#fff8ea)}
+.sky:after{background-image:radial-gradient(#eaa2c6 1.5px,transparent 1.5px),radial-gradient(#bca5ed 1px,transparent 1px);background-position:0 0,24px 24px;background-size:48px 48px;opacity:.34;mask-image:none}
+.hero:before,.hero:after{position:absolute;font-size:clamp(2rem,6vw,4rem);filter:drop-shadow(0 8px 12px #d991b84a);animation:floatCute 4s ease-in-out infinite}
+.hero:before{content:"🎀";left:8%;top:15%}.hero:after{content:"🌸";right:8%;bottom:14%;animation-delay:1.2s}
+.hero{position:relative}.tag{color:#c15488;font-weight:700}.hero p,.head p{color:var(--muted)}
+h1,h2,h3{color:#583653}h1 em{color:#df5f9a;text-shadow:0 5px 0 #fff}
+.primary{border:2px solid #fff;background:linear-gradient(135deg,#ee86b6,#a889eb);box-shadow:0 12px 30px #d67da052;color:#fff;font-weight:700}
+.progress-wrap{background:#fffafddd;border:1px solid #e9bad4;box-shadow:0 8px 28px #bc7d9a24}.progress{background:#efddea}.count{color:#76536f}.bar{background:linear-gradient(90deg,#e98ab5,#a98ce9,#f1b75f)}
+.star-card,.quiz,.puzzle-wrap,.challenge2,.lock{background:linear-gradient(145deg,#ffffffed,#fff7fbdd);border:2px solid #efc5dc;box-shadow:0 16px 40px #b2719121}
+.star-card{color:#563653}.star-card:hover{border-color:#e584b2;box-shadow:0 18px 45px #d475a53a}.star-card.done{background:linear-gradient(145deg,#fff0f7,#f2ebff);border-color:#d993b8}.symbol{filter:drop-shadow(0 5px 7px #bd77975c)}.star-card p,.note p{color:#795f77}.secret{color:#563653!important}
+.option,.dream,.reset{background:#fff;color:#684763;border:2px solid #edc6da;box-shadow:0 5px 14px #bd79911c}.option:hover,.dream:hover,.reset:hover{background:#fff0f7;border-color:#df88b1}.dream.selected{background:linear-gradient(135deg,#ef8db8,#aa8ce9);color:#fff;box-shadow:0 9px 22px #ce75a14a}
+.quiz-result .score,.dream-output,.puzzle-status,.memory-status{color:#c55289}
+.piece{background:linear-gradient(145deg,#f19ac0,#b397ee);border:3px solid #fff;box-shadow:0 7px 18px #bf78993b;color:#fff}.piece:nth-child(even){background:linear-gradient(145deg,#bba1f0,#f4a6c8)}.piece.correct{background:linear-gradient(145deg,#ef8eb8,#a88be9);border-color:#fff4b9;box-shadow:0 0 25px #eab27758}
+.memory-btn{background:#fff;color:#684763;border:2px solid #e9bfd7;box-shadow:0 7px 20px #bd789326}.memory-btn:hover{border-color:#e182b0}.memory-btn.flash{background:linear-gradient(145deg,#ffd5e8,#ded0ff);color:#9a4772;box-shadow:0 0 35px #df89b777}
+.letter{background:#fff;color:#563653;border:3px solid #f3cadd;box-shadow:0 18px 50px #bd76942c}.letter h3{color:#ba4f84}.letter p{color:#654b62}.signature{color:#c4548a!important}
+footer{color:#97728e}.particle{filter:drop-shadow(0 3px 5px #c8739d55)}
+@keyframes floatCute{50%{transform:translateY(-12px) rotate(5deg)}}
+@media(max-width:760px){.hero:before{left:5%;top:9%}.hero:after{right:5%;bottom:9%;font-size:2.5rem}}
 </style>
 </head>
 <body>
