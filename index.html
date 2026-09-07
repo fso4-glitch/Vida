@@ -20,7 +20,7 @@ main{display:none}main.open{display:block;animation:fade .7s ease}.section{paddi
 .quiz{max-width:800px;padding:clamp(24px,5vw,50px);border:1px solid var(--line);border-radius:30px;background:#ffffff0d}.question{display:none}.question.active{display:block;animation:slide .45s ease}.question h3{font-size:clamp(2rem,5vw,3.5rem);margin:0 0 28px}.options{display:grid;gap:12px}.option{border:1px solid var(--line);border-radius:16px;padding:17px 19px;background:#ffffff0b;color:#fff;text-align:left;cursor:pointer;transition:.2s}.option:hover{background:#ffffff18;border-color:#ffd89077;translate:5px 0}
 .quiz-result{display:none;text-align:center}.quiz-result.show{display:block;animation:fade .6s}.quiz-result .score{font:600 4rem "Playfair Display",serif;color:var(--gold)}
 .dreams{display:flex;flex-wrap:wrap;gap:12px}.dream{border:1px solid var(--line);border-radius:999px;padding:14px 18px;color:#fff;background:#ffffff0c;cursor:pointer}.dream.selected{background:linear-gradient(135deg,#7849f5,#c44d91);border-color:transparent}.dream-output{margin-top:28px;min-height:70px;color:var(--gold);font-family:"Playfair Display",serif;font-size:clamp(1.5rem,4vw,2.5rem)}
-.final{min-height:100svh;display:grid;place-items:center;text-align:center}.lock{max-width:770px;padding:clamp(28px,6vw,65px);border:1px solid var(--line);border-radius:32px;background:linear-gradient(145deg,#7849f51b,#ff74a80e);box-shadow:0 30px 100px #0008}.lock h2{font-size:clamp(2.8rem,7vw,5.5rem);line-height:.95;margin:10px 0 22px}.locked-note{color:var(--muted)}.letter{display:none;text-align:left;background:#fff9f2;color:#423448;border-radius:22px;padding:clamp(25px,5vw,50px);margin-top:30px}.letter.show{display:block;animation:slide .7s ease}.letter h3{color:#6a2c64;font-size:clamp(2rem,5vw,3.6rem);margin:0 0 20px}.letter p{line-height:1.85}.signature{color:#a23e73;font-family:"Playfair Display",serif;font-size:1.3rem}
+.puzzle-wrap{max-width:720px;padding:clamp(22px,5vw,46px);border:1px solid var(--line);border-radius:30px;background:#ffffff0d;text-align:center}.puzzle{width:min(100%,480px);aspect-ratio:1;margin:30px auto 18px;display:grid;grid-template-columns:repeat(3,1fr);gap:7px}.piece{border:1px solid #ffffff2f;border-radius:14px;background:linear-gradient(145deg,#6e3de9,#c14d94);color:#fff;font:600 clamp(1.5rem,6vw,3rem) "Playfair Display",serif;cursor:pointer;transition:.25s;box-shadow:inset 0 0 35px #ffffff12}.piece:nth-child(even){background:linear-gradient(145deg,#9b48ca,#e1669a)}.piece:hover{transform:scale(.96)}.piece.chosen{outline:4px solid var(--gold);outline-offset:2px;transform:scale(.93)}.piece.correct{background:linear-gradient(145deg,#5f3ce0,#ff6fa7);border-color:var(--gold);box-shadow:0 0 25px #ffd89044}.puzzle-status{min-height:30px;color:var(--gold);font-weight:600}.moves{color:var(--muted);font-size:.9rem}.reset{margin-top:15px;border:1px solid var(--line);border-radius:999px;padding:10px 17px;background:#ffffff0b;color:#fff;cursor:pointer}.final{min-height:100svh;display:grid;place-items:center;text-align:center}.lock{max-width:770px;padding:clamp(28px,6vw,65px);border:1px solid var(--line);border-radius:32px;background:linear-gradient(145deg,#7849f51b,#ff74a80e);box-shadow:0 30px 100px #0008}.lock h2{font-size:clamp(2.8rem,7vw,5.5rem);line-height:.95;margin:10px 0 22px}.locked-note{color:var(--muted)}.letter{display:none;text-align:left;background:#fff9f2;color:#423448;border-radius:22px;padding:clamp(25px,5vw,50px);margin-top:30px}.letter.show{display:block;animation:slide .7s ease}.letter h3{color:#6a2c64;font-size:clamp(2rem,5vw,3.6rem);margin:0 0 20px}.letter p{line-height:1.85}.signature{color:#a23e73;font-family:"Playfair Display",serif;font-size:1.3rem}
 .particle{position:fixed;z-index:30;pointer-events:none;animation:pop 1.2s ease-out forwards}.reveal{opacity:0;transform:translateY(22px);transition:.7s}.reveal.visible{opacity:1;transform:none}
 footer{text-align:center;padding:25px;color:#9287a6;font-size:.78rem}
 @keyframes fade{from{opacity:0}}@keyframes slide{from{opacity:0;transform:translateY(15px)}}@keyframes pop{to{translate:var(--x) var(--y);rotate:220deg;opacity:0}}
@@ -32,7 +32,7 @@ footer{text-align:center;padding:25px;color:#9287a6;font-size:.78rem}
 <div class="sky" aria-hidden="true"></div>
 <header class="hero"><div><span class="tag">uma experiência feita pra vc</span><h1>Existe uma surpresa <em>escondida aqui</em></h1><p>Explore cada parte, faça suas escolhas e desbloqueie a mensagem final.</p><button class="primary" id="start">Começar ✦</button></div></header>
 <main id="main">
-<div class="progress-wrap"><div class="progress"><div class="bar" id="bar"></div></div><span class="count" id="count">0 de 5 descobertas</span></div>
+<div class="progress-wrap"><div class="progress"><div class="bar" id="bar"></div></div><span class="count" id="count">0 de 6 descobertas</span></div>
 
 <section class="section">
 <div class="head reveal"><span class="tag">01 · escolha as estrelas</span><h2>Cada estrela guarda uma mensagem</h2><p>Toque em todas elas para descobrir o que existe por trás.</p></div>
@@ -60,8 +60,18 @@ footer{text-align:center;padding:25px;color:#9287a6;font-size:.78rem}
 </div><div class="dream-output reveal" id="dreamOutput">O futuro começa com uma escolha ✦</div>
 </section>
 
+<section class="section">
+<div class="head reveal"><span class="tag">04 · quebra-cabeça</span><h2>Monte a mensagem secreta</h2><p>Toque em duas peças para trocar de lugar. Coloque os números na ordem certa.</p></div>
+<div class="puzzle-wrap reveal">
+<div class="puzzle" id="puzzle" aria-label="Quebra-cabeça de nove peças"></div>
+<p class="puzzle-status" id="puzzleStatus">Ordem certa: 1 · 2 · 3 · 4 · 5 · 6 · 7 · 8 · 9</p>
+<p class="moves" id="moves">0 movimentos</p>
+<button class="reset" id="resetPuzzle" type="button">Embaralhar novamente</button>
+</div>
+</section>
+
 <section class="section final">
-<div class="lock reveal"><span class="tag">04 · mensagem final</span><h2 id="finalTitle">Complete as descobertas</h2><p class="locked-note" id="lockedNote">Abra as 3 estrelas, termine o quiz e escolha pelo menos um sonho.</p><button class="primary" id="unlock" disabled>Desbloquear mensagem</button>
+<div class="lock reveal"><span class="tag">05 · mensagem final</span><h2 id="finalTitle">Complete as descobertas</h2><p class="locked-note" id="lockedNote">Abra as 3 estrelas, termine o quiz, escolha um sonho e resolva o quebra-cabeça.</p><button class="primary" id="unlock" disabled>Desbloquear mensagem</button>
 <article class="letter" id="letter"><h3>Pra uma pessoa inesquecível</h3><p>Essa página é uma pequena forma de mostrar o quanto sua presença tornou muitos momentos mais especiais. Sou grato a Deus por ter colocado alguém tão incrível no meu caminho.</p><p>Se a vida fosse um livro, o capítulo em que nossas histórias se encontraram seria um daqueles que vale a pena reler muitas vezes.</p><p class="signature">Feito cm carinho, especialmente pra vc ✦</p></article>
 </div>
 </section>
@@ -69,15 +79,20 @@ footer{text-align:center;padding:25px;color:#9287a6;font-size:.78rem}
 <footer>Uma surpresa interativa · 2026</footer>
 <script>
 const main=document.getElementById('main'),bar=document.getElementById('bar'),count=document.getElementById('count'),unlock=document.getElementById('unlock');
-let discoveries=new Set(),quizDone=false,dreamDone=false,answers=[];
+let discoveries=new Set(),quizDone=false,dreamDone=false,puzzleDone=false,answers=[];
 document.getElementById('start').onclick=()=>{main.classList.add('open');setTimeout(()=>main.scrollIntoView({behavior:'smooth'}),100)};
 const observer=new IntersectionObserver(es=>es.forEach(e=>e.isIntersecting&&e.target.classList.add('visible')),{threshold:.12});document.querySelectorAll('.reveal').forEach(e=>observer.observe(e));
-function update(){const n=discoveries.size+(quizDone?1:0)+(dreamDone?1:0);bar.style.width=(n/5*100)+'%';count.textContent=n+' de 5 descobertas';if(n===5){unlock.disabled=false;document.getElementById('finalTitle').textContent='A mensagem está pronta';document.getElementById('lockedNote').textContent='Vc encontrou cada pedacinho da surpresa.'}}
+function update(){const n=discoveries.size+(quizDone?1:0)+(dreamDone?1:0)+(puzzleDone?1:0);bar.style.width=(n/6*100)+'%';count.textContent=n+' de 6 descobertas';if(n===6){unlock.disabled=false;document.getElementById('finalTitle').textContent='A mensagem está pronta';document.getElementById('lockedNote').textContent='Vc encontrou cada pedacinho da surpresa.'}}
 document.querySelectorAll('[data-discovery]').forEach((card,i)=>card.onclick=()=>{card.classList.add('done');discoveries.add(i);burst(card);update()});
 const questions=[...document.querySelectorAll('.question')];document.querySelectorAll('.option').forEach(btn=>btn.onclick=()=>{answers.push(btn.textContent);const current=btn.closest('.question'),index=questions.indexOf(current);current.classList.remove('active');if(index<questions.length-1){questions[index+1].classList.add('active')}else{quizDone=true;document.querySelector('.quiz-result').classList.add('show');document.getElementById('quizText').textContent='Vc escolheu: '+answers.join(' · ')+'. Cada escolha deixou essa história ainda mais única.';update()}});
 const selected=new Set();document.querySelectorAll('.dream').forEach(btn=>btn.onclick=()=>{btn.classList.toggle('selected');btn.classList.contains('selected')?selected.add(btn.textContent):selected.delete(btn.textContent);dreamDone=selected.size>0;document.getElementById('dreamOutput').textContent=selected.size?'Nossa cápsula: '+[...selected].join(' · '):'O futuro começa com uma escolha ✦';update()});
 unlock.onclick=()=>{document.getElementById('letter').classList.add('show');unlock.style.display='none';burst(unlock,40);setTimeout(()=>document.getElementById('letter').scrollIntoView({behavior:'smooth',block:'center'}),250)};
 function burst(el,total=18){const r=el.getBoundingClientRect();for(let i=0;i<total;i++){const p=document.createElement('span');p.className='particle';p.textContent=i%3?'✦':'●';p.style.left=(r.left+r.width/2)+'px';p.style.top=(r.top+r.height/2)+'px';p.style.color=i%2?'#ffd890':'#ff74a8';p.style.setProperty('--x',(Math.random()*260-130)+'px');p.style.setProperty('--y',(Math.random()*220-140)+'px');document.body.appendChild(p);setTimeout(()=>p.remove(),1250)}}
+const puzzle=document.getElementById('puzzle'),puzzleStatus=document.getElementById('puzzleStatus'),movesEl=document.getElementById('moves');let order=[],picked=null,moves=0;
+function shufflePuzzle(){order=[1,2,3,4,5,6,7,8,9];do{for(let i=order.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[order[i],order[j]]=[order[j],order[i]]}}while(order.every((n,i)=>n===i+1));picked=null;moves=0;puzzleDone=false;renderPuzzle();update()}
+function renderPuzzle(){puzzle.innerHTML='';order.forEach((n,i)=>{const b=document.createElement('button');b.className='piece'+(n===i+1?' correct':'')+(picked===i?' chosen':'');b.textContent=n;b.type='button';b.setAttribute('aria-label','Peça '+n);b.onclick=()=>pickPiece(i);puzzle.appendChild(b)});movesEl.textContent=moves+' movimento'+(moves===1?'':'s')}
+function pickPiece(i){if(puzzleDone)return;if(picked===null){picked=i;renderPuzzle();return}if(picked===i){picked=null;renderPuzzle();return}[order[picked],order[i]]=[order[i],order[picked]];picked=null;moves++;renderPuzzle();if(order.every((n,j)=>n===j+1)){puzzleDone=true;puzzleStatus.textContent='Vc montou! Mais uma surpresa foi desbloqueada ✦';puzzle.querySelectorAll('.piece').forEach(p=>p.classList.add('correct'));burst(puzzle,35);update()}}
+document.getElementById('resetPuzzle').onclick=shufflePuzzle;shufflePuzzle();
 update();
 </script>
 </body></html>
