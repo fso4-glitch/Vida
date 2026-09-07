@@ -1,20 +1,18 @@
 # Vida ✨
 
-Site-surpresa interativo criado com HTML, CSS e JavaScript.
+Uma surpresa interativa criada com HTML, CSS e JavaScript.
 
-## Recursos
+## Como ela interage
 
-- abertura animada;
-- visual de céu noturno;
-- cartões com mensagens;
-- presente interativo;
-- carta final revelada ao toque;
-- layout responsivo para celular e computador.
+- abre três estrelas com mensagens escondidas;
+- responde um miniquiz de três perguntas;
+- escolhe sonhos para uma cápsula do tempo;
+- acompanha uma barra de progresso;
+- desbloqueia a carta final;
+- vê animações e partículas em cada descoberta.
 
 ## Publicar com GitHub Pages
 
 Abra **Settings → Pages**, escolha **Deploy from a branch**, selecione **main** e **/root**, depois clique em **Save**.
-
-O site ficará disponível em:
 
 https://fso4-glitch.github.io/Vida/
