@@ -12,7 +12,7 @@ button{font:inherit}.sky{position:fixed;inset:0;z-index:-2;background:radial-gra
 .hero{min-height:100svh;display:grid;place-items:center;text-align:center;padding:26px}.hero>div{max-width:850px}.tag{color:var(--gold);text-transform:uppercase;letter-spacing:.26em;font-size:.78rem}
 h1,h2,h3{font-family:"Playfair Display",serif}h1{font-size:clamp(3.4rem,10vw,8rem);line-height:.88;letter-spacing:-.055em;margin:16px 0 28px}h1 em{display:block;color:var(--pink)}
 .hero p{max-width:600px;margin:0 auto 30px;color:var(--muted);font-size:1.05rem}.primary{border:1px solid #ffffff45;border-radius:999px;padding:15px 25px;color:#fff;background:linear-gradient(135deg,#6940dc,#a044a1);cursor:pointer;box-shadow:0 15px 50px #0008;transition:.25s}.primary:hover{transform:translateY(-3px) scale(1.02)}
-main{display:none}main.open{display:block;animation:fade .7s ease}.section{padding:100px max(22px,7vw)}.head{max-width:740px;margin-bottom:45px}.head h2{font-size:clamp(2.7rem,7vw,5.5rem);line-height:.95;margin:12px 0 18px}.head p{color:var(--muted)}
+main{display:none}main.open{display:block;animation:fade .7s ease}.section{padding:100px max(22px,7vw)}.stage{display:none;min-height:100svh}.stage.active{display:block;animation:slide .65s ease}.head{max-width:740px;margin-bottom:45px}.head h2{font-size:clamp(2.7rem,7vw,5.5rem);line-height:.95;margin:12px 0 18px}.head p{color:var(--muted)}
 .progress-wrap{position:sticky;top:14px;z-index:10;width:min(480px,calc(100% - 28px));margin:0 auto;padding:10px 14px;border:1px solid var(--line);border-radius:999px;background:#120c2ddd;backdrop-filter:blur(15px);display:flex;align-items:center;gap:12px}
 .progress{height:7px;flex:1;background:#ffffff17;border-radius:999px;overflow:hidden}.bar{width:0;height:100%;background:linear-gradient(90deg,var(--purple),var(--pink),var(--gold));transition:.5s}.count{font-size:.75rem;color:var(--muted);white-space:nowrap}
 .stars{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.star-card{min-height:235px;border:1px solid var(--line);border-radius:26px;background:var(--panel);color:#fff;padding:28px;text-align:left;cursor:pointer;transition:.3s;position:relative;overflow:hidden}
@@ -34,7 +34,7 @@ footer{text-align:center;padding:25px;color:#9287a6;font-size:.78rem}
 <main id="main">
 <div class="progress-wrap"><div class="progress"><div class="bar" id="bar"></div></div><span class="count" id="count">0 de 7 descobertas</span></div>
 
-<section class="section">
+<section class="section stage active" id="stage1">
 <div class="head reveal"><span class="tag">01 · escolha as estrelas</span><h2>Cada estrela guarda uma mensagem</h2><p>Toque em todas elas para descobrir o que existe por trás.</p></div>
 <div class="stars">
 <button class="star-card reveal" data-discovery><span class="symbol">✦</span><div class="default"><h3>Sua luz</h3><p>Toque para revelar</p></div><p class="secret">Vc tem um jeito único de deixar até os dias comuns mais bonitos.</p></button>
@@ -43,7 +43,7 @@ footer{text-align:center;padding:25px;color:#9287a6;font-size:.78rem}
 </div>
 </section>
 
-<section class="section">
+<section class="section stage" id="stage2">
 <div class="head reveal"><span class="tag">02 · miniquiz</span><h2>O que combina com essa história?</h2><p>N existe resposta errada. Cada escolha revela um detalhe novo.</p></div>
 <div class="quiz reveal">
 <div class="question active"><h3>Qual momento merece ser guardado?</h3><div class="options"><button class="option">Uma conversa q durou horas</button><button class="option">Uma risada inesperada</button><button class="option">Um dia simples q virou especial</button></div></div>
@@ -53,14 +53,14 @@ footer{text-align:center;padding:25px;color:#9287a6;font-size:.78rem}
 </div>
 </section>
 
-<section class="section">
+<section class="section stage" id="stage3">
 <div class="head reveal"><span class="tag">03 · escolha o futuro</span><h2>Monte uma pequena cápsula do tempo</h2><p>Escolha quantos sonhos quiser.</p></div>
 <div class="dreams reveal">
 <button class="dream">Viajar juntos</button><button class="dream">Construir novas memórias</button><button class="dream">Ter nossa casa</button><button class="dream">Ver nossos sonhos acontecendo</button><button class="dream">Envelhecer juntos</button>
-</div><div class="dream-output reveal" id="dreamOutput">O futuro começa com uma escolha ✦</div>
+</div><div class="dream-output reveal" id="dreamOutput">O futuro começa com uma escolha ✦</div><button class="primary" id="dreamContinue" type="button" disabled>Continuar para o desafio</button>
 </section>
 
-<section class="section">
+<section class="section stage" id="stage4">
 <div class="head reveal"><span class="tag">04 · quebra-cabeça</span><h2>Monte a mensagem secreta</h2><p>Toque em duas peças para trocar de lugar. Coloque os números na ordem certa.</p></div>
 <div class="puzzle-wrap reveal">
 <div class="puzzle" id="puzzle" aria-label="Quebra-cabeça de nove peças"></div>
@@ -70,7 +70,7 @@ footer{text-align:center;padding:25px;color:#9287a6;font-size:.78rem}
 </div>
 </section>
 
-<section class="section" id="memorySection">
+<section class="section stage" id="stage5">
 <div class="head reveal"><span class="tag">05 · desafio secreto</span><h2>Repita a sequência</h2><p>Esse desafio só abre depois do quebra-cabeça. Observe os símbolos iluminados e toque neles na mesma ordem.</p></div>
 <div class="challenge2 reveal" id="challenge2">
 <p class="memory-status" id="memoryStatus">Resolva o quebra-cabeça para desbloquear.</p>
@@ -84,7 +84,7 @@ footer{text-align:center;padding:25px;color:#9287a6;font-size:.78rem}
 </div>
 </section>
 
-<section class="section final">
+<section class="section final stage" id="stage6">
 <div class="lock reveal"><span class="tag">06 · mensagem final</span><h2 id="finalTitle">Complete as descobertas</h2><p class="locked-note" id="lockedNote">Abra as estrelas, termine o quiz, escolha um sonho e vença os dois desafios.</p><button class="primary" id="unlock" disabled>Desbloquear mensagem</button>
 <article class="letter" id="letter"><h3>Pra uma pessoa inesquecível</h3><p>Essa página é uma pequena forma de mostrar o quanto sua presença tornou muitos momentos mais especiais. Sou grato a Deus por ter colocado alguém tão incrível no meu caminho.</p><p>Se a vida fosse um livro, o capítulo em que nossas histórias se encontraram seria um daqueles que vale a pena reler muitas vezes.</p><p class="signature">Feito cm carinho, especialmente pra vc ✦</p></article>
 </div>
@@ -94,23 +94,24 @@ footer{text-align:center;padding:25px;color:#9287a6;font-size:.78rem}
 <script>
 const main=document.getElementById('main'),bar=document.getElementById('bar'),count=document.getElementById('count'),unlock=document.getElementById('unlock');
 let discoveries=new Set(),quizDone=false,dreamDone=false,puzzleDone=false,memoryDone=false,answers=[];
-document.getElementById('start').onclick=()=>{main.classList.add('open');setTimeout(()=>main.scrollIntoView({behavior:'smooth'}),100)};
+document.getElementById('start').onclick=()=>{main.classList.add('open');activateStage(1)};function activateStage(n){document.querySelectorAll('.stage').forEach(s=>s.classList.remove('active'));const next=document.getElementById('stage'+n);next.classList.add('active');setTimeout(()=>next.scrollIntoView({behavior:'smooth',block:'start'}),80)}
 const observer=new IntersectionObserver(es=>es.forEach(e=>e.isIntersecting&&e.target.classList.add('visible')),{threshold:.12});document.querySelectorAll('.reveal').forEach(e=>observer.observe(e));
 function update(){const n=discoveries.size+(quizDone?1:0)+(dreamDone?1:0)+(puzzleDone?1:0)+(memoryDone?1:0);bar.style.width=(n/7*100)+'%';count.textContent=n+' de 7 descobertas';if(n===7){unlock.disabled=false;document.getElementById('finalTitle').textContent='A mensagem está pronta';document.getElementById('lockedNote').textContent='Vc encontrou cada pedacinho da surpresa.'}}
-document.querySelectorAll('[data-discovery]').forEach((card,i)=>card.onclick=()=>{card.classList.add('done');discoveries.add(i);burst(card);update()});
-const questions=[...document.querySelectorAll('.question')];document.querySelectorAll('.option').forEach(btn=>btn.onclick=()=>{answers.push(btn.textContent);const current=btn.closest('.question'),index=questions.indexOf(current);current.classList.remove('active');if(index<questions.length-1){questions[index+1].classList.add('active')}else{quizDone=true;document.querySelector('.quiz-result').classList.add('show');document.getElementById('quizText').textContent='Vc escolheu: '+answers.join(' · ')+'. Cada escolha deixou essa história ainda mais única.';update()}});
-const selected=new Set();document.querySelectorAll('.dream').forEach(btn=>btn.onclick=()=>{btn.classList.toggle('selected');btn.classList.contains('selected')?selected.add(btn.textContent):selected.delete(btn.textContent);dreamDone=selected.size>0;document.getElementById('dreamOutput').textContent=selected.size?'Nossa cápsula: '+[...selected].join(' · '):'O futuro começa com uma escolha ✦';update()});
+document.querySelectorAll('[data-discovery]').forEach((card,i)=>card.onclick=()=>{card.classList.add('done');discoveries.add(i);burst(card);update();if(discoveries.size===3)setTimeout(()=>activateStage(2),700)});
+const questions=[...document.querySelectorAll('.question')];document.querySelectorAll('.option').forEach(btn=>btn.onclick=()=>{answers.push(btn.textContent);const current=btn.closest('.question'),index=questions.indexOf(current);current.classList.remove('active');if(index<questions.length-1){questions[index+1].classList.add('active')}else{quizDone=true;document.querySelector('.quiz-result').classList.add('show');document.getElementById('quizText').textContent='Vc escolheu: '+answers.join(' · ')+'. Cada escolha deixou essa história ainda mais única.';update();setTimeout(()=>activateStage(3),1200)}});
+const selected=new Set();document.querySelectorAll('.dream').forEach(btn=>btn.onclick=()=>{btn.classList.toggle('selected');btn.classList.contains('selected')?selected.add(btn.textContent):selected.delete(btn.textContent);dreamDone=selected.size>0;document.getElementById('dreamContinue').disabled=!dreamDone;document.getElementById('dreamOutput').textContent=selected.size?'Nossa cápsula: '+[...selected].join(' · '):'O futuro começa com uma escolha ✦';update()});
 unlock.onclick=()=>{document.getElementById('letter').classList.add('show');unlock.style.display='none';burst(unlock,40);setTimeout(()=>document.getElementById('letter').scrollIntoView({behavior:'smooth',block:'center'}),250)};
 function burst(el,total=18){const r=el.getBoundingClientRect();for(let i=0;i<total;i++){const p=document.createElement('span');p.className='particle';p.textContent=i%3?'✦':'●';p.style.left=(r.left+r.width/2)+'px';p.style.top=(r.top+r.height/2)+'px';p.style.color=i%2?'#ffd890':'#ff74a8';p.style.setProperty('--x',(Math.random()*260-130)+'px');p.style.setProperty('--y',(Math.random()*220-140)+'px');document.body.appendChild(p);setTimeout(()=>p.remove(),1250)}}
+document.getElementById('dreamContinue').onclick=()=>{if(dreamDone)activateStage(4)};
 const puzzle=document.getElementById('puzzle'),puzzleStatus=document.getElementById('puzzleStatus'),movesEl=document.getElementById('moves');let order=[],picked=null,moves=0;
 function shufflePuzzle(){order=[1,2,3,4,5,6,7,8,9];do{for(let i=order.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[order[i],order[j]]=[order[j],order[i]]}}while(order.every((n,i)=>n===i+1));picked=null;moves=0;puzzleDone=false;renderPuzzle();update()}
 function renderPuzzle(){puzzle.innerHTML='';order.forEach((n,i)=>{const b=document.createElement('button');b.className='piece'+(n===i+1?' correct':'')+(picked===i?' chosen':'');b.textContent=n;b.type='button';b.setAttribute('aria-label','Peça '+n);b.onclick=()=>pickPiece(i);puzzle.appendChild(b)});movesEl.textContent=moves+' movimento'+(moves===1?'':'s')}
-function pickPiece(i){if(puzzleDone)return;if(picked===null){picked=i;renderPuzzle();return}if(picked===i){picked=null;renderPuzzle();return}[order[picked],order[i]]=[order[i],order[picked]];picked=null;moves++;renderPuzzle();if(order.every((n,j)=>n===j+1)){puzzleDone=true;puzzleStatus.textContent='Vc montou! O desafio secreto foi desbloqueado ✦';puzzle.querySelectorAll('.piece').forEach(p=>p.classList.add('correct'));document.getElementById('challenge2').classList.add('unlocked');document.getElementById('memoryStatus').textContent='Pronta? Observe com atenção.';burst(puzzle,35);update();setTimeout(()=>document.getElementById('memorySection').scrollIntoView({behavior:'smooth'}),700)}}
+function pickPiece(i){if(puzzleDone)return;if(picked===null){picked=i;renderPuzzle();return}if(picked===i){picked=null;renderPuzzle();return}[order[picked],order[i]]=[order[i],order[picked]];picked=null;moves++;renderPuzzle();if(order.every((n,j)=>n===j+1)){puzzleDone=true;puzzleStatus.textContent='Vc montou! O desafio secreto foi desbloqueado ✦';puzzle.querySelectorAll('.piece').forEach(p=>p.classList.add('correct'));document.getElementById('challenge2').classList.add('unlocked');document.getElementById('memoryStatus').textContent='Pronta? Observe com atenção.';burst(puzzle,35);update();setTimeout(()=>activateStage(5),700)}}
 document.getElementById('resetPuzzle').onclick=shufflePuzzle;shufflePuzzle();
 const memoryButtons=[...document.querySelectorAll('.memory-btn')],memoryStatus=document.getElementById('memoryStatus'),memoryStart=document.getElementById('memoryStart');let memorySequence=[],memoryInput=[],memoryPlaying=false;
 function makeSequence(){memorySequence=Array.from({length:5},()=>Math.floor(Math.random()*4));memoryInput=[];memoryPlaying=true;memoryStart.disabled=true;memoryButtons.forEach(b=>b.disabled=true);memoryStatus.textContent='Observe a sequência...';memorySequence.forEach((value,i)=>setTimeout(()=>{const b=memoryButtons[value];b.classList.add('flash');setTimeout(()=>b.classList.remove('flash'),420)},700+i*700));setTimeout(()=>{memoryPlaying=false;memoryButtons.forEach(b=>b.disabled=false);memoryStatus.textContent='Agr repita a ordem!'},550+memorySequence.length*700)}
 memoryStart.onclick=()=>{if(puzzleDone&&!memoryDone)makeSequence()};
-memoryButtons.forEach((b,i)=>b.onclick=()=>{if(memoryPlaying||!puzzleDone||memoryDone)return;b.classList.add('flash');setTimeout(()=>b.classList.remove('flash'),180);memoryInput.push(i);const pos=memoryInput.length-1;if(memoryInput[pos]!==memorySequence[pos]){memoryInput=[];memoryStatus.textContent='Quase! Toque em “Mostrar sequência” e tente dnv.';memoryStart.disabled=false;memoryButtons.forEach(x=>x.disabled=true);return}if(memoryInput.length===memorySequence.length){memoryDone=true;memoryStatus.textContent='Sequência perfeita! A mensagem final foi liberada ✦';memoryButtons.forEach(x=>x.disabled=true);memoryStart.style.display='none';burst(document.getElementById('memoryBoard'),40);update()}});
+memoryButtons.forEach((b,i)=>b.onclick=()=>{if(memoryPlaying||!puzzleDone||memoryDone)return;b.classList.add('flash');setTimeout(()=>b.classList.remove('flash'),180);memoryInput.push(i);const pos=memoryInput.length-1;if(memoryInput[pos]!==memorySequence[pos]){memoryInput=[];memoryStatus.textContent='Quase! Toque em “Mostrar sequência” e tente dnv.';memoryStart.disabled=false;memoryButtons.forEach(x=>x.disabled=true);return}if(memoryInput.length===memorySequence.length){memoryDone=true;memoryStatus.textContent='Sequência perfeita! A mensagem final foi liberada ✦';memoryButtons.forEach(x=>x.disabled=true);memoryStart.style.display='none';burst(document.getElementById('memoryBoard'),40);update();setTimeout(()=>activateStage(6),1000)}});
 update();
 </script>
 </body></html>
