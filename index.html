@@ -80,10 +80,11 @@ footer{background:#f7bfd4;color:#7a4257}
 .user-bear{position:fixed;z-index:25;border:0;padding:0;background:transparent;cursor:pointer;filter:drop-shadow(0 9px 13px #9c315c35);transition:filter .2s,scale .2s;line-height:0}
 .user-bear img{display:block;width:100%;height:auto}
 .user-bear:hover{filter:drop-shadow(0 12px 18px #9c315c55);scale:1.06}.user-bear:active{scale:.9}.user-bear:focus-visible{outline:4px solid #d94379;outline-offset:4px;border-radius:25px}
-.bear-one{width:142px;left:8px;top:8px;animation:cornerFloat 3.5s ease-in-out infinite}
-.bear-two{width:138px;right:8px;top:8px;animation:cornerSway 4.1s ease-in-out infinite}
-.bear-three{width:136px;left:8px;bottom:8px;animation:cornerBounce 3.2s ease-in-out infinite}
-.bear-four{width:142px;right:8px;bottom:8px;animation:cornerFloat 3.8s ease-in-out infinite reverse}
+.bear-one,.bear-two,.bear-three,.bear-four{width:142px}
+.bear-one{left:8px;top:8px;animation:cornerFloat 3.5s ease-in-out infinite}
+.bear-two{right:8px;top:8px;animation:cornerSway 4.1s ease-in-out infinite}
+.bear-three{left:8px;bottom:8px;animation:cornerBounce 3.2s ease-in-out infinite}
+.bear-four{right:8px;bottom:8px;animation:cornerFloat 3.8s ease-in-out infinite reverse}
 .bear-hint{position:fixed;right:18px;bottom:156px;z-index:24;padding:8px 12px;border-radius:999px;background:#fff7fb;color:#b94373;border:2px dotted #dd5b89;font-size:.75rem;font-weight:700;box-shadow:0 7px 18px #a9487126;animation:hintFade 7s ease forwards}
 @keyframes cornerFloat{0%,100%{translate:0 0;rotate:-2deg}50%{translate:0 -9px;rotate:2deg}}
 @keyframes cornerSway{0%,100%{translate:0 0;rotate:2deg}50%{translate:-6px 4px;rotate:-3deg}}
