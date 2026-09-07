@@ -98,6 +98,15 @@ footer{background:#f7bfd4;color:#7a4257}
  .bear-hint{right:8px;bottom:calc(clamp(140px,38vw,160px) + 18px);font-size:.65rem}
 }
 @media(max-width:390px){.bear-one,.bear-two,.bear-three,.bear-four{width:140px}}
+/* Reações diferentes ao tocar em cada ursinho */
+.rain-heart{position:fixed;top:-40px;z-index:42;pointer-events:none;color:#e60023;filter:drop-shadow(0 3px 4px #8b001c44);animation:heartRain var(--rain-time,1.8s) ease-in forwards}
+.trail-heart{position:fixed;z-index:42;pointer-events:none;color:#e60023;animation:heartTrail 1.35s ease-out forwards}
+.big-heart{position:fixed;left:50%;top:50%;z-index:45;pointer-events:none;color:#e60023;font-size:min(42vw,190px);line-height:1;filter:drop-shadow(0 12px 22px #9b123f66);animation:bigHeartPop 1.65s cubic-bezier(.2,.8,.25,1) forwards}
+.user-bear.tap-hop img{animation:tapBearHop .75s cubic-bezier(.2,.8,.3,1)}
+@keyframes heartRain{0%{opacity:0;transform:translateY(0) rotate(0) scale(.55)}12%{opacity:1}100%{opacity:0;transform:translateY(110vh) rotate(420deg) scale(1.1)}}
+@keyframes heartTrail{0%{opacity:1;transform:translate(0,0) scale(.45)}100%{opacity:0;transform:translate(var(--tx),var(--ty)) scale(1.15) rotate(var(--tr))}}
+@keyframes bigHeartPop{0%{opacity:0;transform:translate(-50%,-50%) scale(.15) rotate(-12deg)}35%{opacity:1;transform:translate(-50%,-50%) scale(1.15) rotate(5deg)}60%{transform:translate(-50%,-50%) scale(.94) rotate(-2deg)}100%{opacity:0;transform:translate(-50%,-50%) scale(1.35) rotate(0)}}
+@keyframes tapBearHop{0%,100%{transform:translateY(0) rotate(0)}35%{transform:translateY(-30px) rotate(-8deg)}65%{transform:translateY(-9px) rotate(6deg)}}
 @media(prefers-reduced-motion:reduce){.user-bear{animation:none}}
 </style>
 </head>
@@ -191,7 +200,11 @@ const memoryButtons=[...document.querySelectorAll('.memory-btn')],memoryStatus=d
 function makeSequence(){memorySequence=Array.from({length:3},()=>Math.floor(Math.random()*4));memoryInput=[];memoryPlaying=true;memoryStart.disabled=true;memoryButtons.forEach(b=>b.disabled=true);memoryStatus.textContent='Observe a sequência...';memorySequence.forEach((value,i)=>setTimeout(()=>{const b=memoryButtons[value];b.classList.add('flash');setTimeout(()=>b.classList.remove('flash'),420)},850+i*850));setTimeout(()=>{memoryPlaying=false;memoryButtons.forEach(b=>b.disabled=false);memoryStatus.textContent='Agr repita a ordem!'},700+memorySequence.length*850)}
 memoryStart.onclick=()=>{if(puzzleDone&&!memoryDone)makeSequence()};
 memoryButtons.forEach((b,i)=>b.onclick=()=>{if(memoryPlaying||!puzzleDone||memoryDone)return;b.classList.add('flash');setTimeout(()=>b.classList.remove('flash'),180);memoryInput.push(i);const pos=memoryInput.length-1;if(memoryInput[pos]!==memorySequence[pos]){memoryInput=[];memoryStatus.textContent='Quase! Toque em “Mostrar sequência” e tente dnv.';memoryStart.disabled=false;memoryButtons.forEach(x=>x.disabled=true);return}if(memoryInput.length===memorySequence.length){memoryDone=true;memoryStatus.textContent='Sequência perfeita! A mensagem final foi liberada ✦';memoryButtons.forEach(x=>x.disabled=true);memoryStart.style.display='none';burst(document.getElementById('memoryBoard'),40);update();setTimeout(()=>activateStage(6),1000)}});
-document.querySelectorAll('.user-bear').forEach(b=>b.onclick=e=>bearBurst(e.currentTarget,24));
+function bearRain(){for(let i=0;i<28;i++){setTimeout(()=>{const h=document.createElement('span');h.className='rain-heart';h.textContent='❤';h.style.left=(Math.random()*96+2)+'vw';h.style.fontSize=(15+Math.random()*22)+'px';h.style.setProperty('--rain-time',(1.35+Math.random()*.9)+'s');document.body.appendChild(h);setTimeout(()=>h.remove(),2500)},i*38)}}
+function bearHop(el){el.classList.remove('tap-hop');void el.offsetWidth;el.classList.add('tap-hop');const r=el.getBoundingClientRect();for(let i=0;i<18;i++){const h=document.createElement('span');h.className='trail-heart';h.textContent='❤';h.style.left=(r.left+r.width/2)+'px';h.style.top=(r.top+r.height/2)+'px';h.style.fontSize=(12+Math.random()*15)+'px';h.style.setProperty('--tx',(Math.random()*150-75)+'px');h.style.setProperty('--ty',(-45-Math.random()*125)+'px');h.style.setProperty('--tr',(Math.random()*180-90)+'deg');document.body.appendChild(h);setTimeout(()=>h.remove(),1450)}setTimeout(()=>el.classList.remove('tap-hop'),800)}
+function bearBigHeart(el){const h=document.createElement('span');h.className='big-heart';h.textContent='❤';document.body.appendChild(h);bearBurst(el,10);setTimeout(()=>h.remove(),1750)}
+const bearEffects=[el=>bearBurst(el,26),()=>bearRain(),el=>bearHop(el),el=>bearBigHeart(el)];
+document.querySelectorAll('.user-bear').forEach((b,i)=>b.onclick=()=>bearEffects[i](b));
 update();
 </script>
 </body></html>
